@@ -1,0 +1,42 @@
+[ req ]
+default_bits = 2048
+distinguished_name = req_distinguished_name
+string_mask = utf8only
+prompt = no
+
+[ req_distinguished_name ]
+countryName = RU
+stateOrProvinceName = Moscow
+localityName = Moscow
+organizationName = VPNLab
+organizationalUnitName = IT
+commonName = VPN-CA
+
+[ ca ]
+default_ca = CA_default
+
+[ CA_default ]
+database = index.txt
+serial = serial
+new_certs_dir = newcerts
+default_md = sha256
+policy = policy_loose
+
+[ policy_loose ]
+countryName = optional
+stateOrProvinceName = optional
+localityName = optional
+organizationName = optional
+organizationalUnitName = optional
+commonName = supplied
+
+[ server_cert ]
+basicConstraints = CA:FALSE
+keyUsage = digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = IP:10.0.0.1,IP:192.168.0.1
+
+[ client_cert ]
+basicConstraints = CA:FALSE
+keyUsage = digitalSignature, keyEncipherment
+extendedKeyUsage = clientAuth
